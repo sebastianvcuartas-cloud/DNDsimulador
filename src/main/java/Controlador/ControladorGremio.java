@@ -108,30 +108,7 @@ public void guardarEnArchivo(String texto) {
             .distinct()
             .count();
 }
-    public String procesarSimulacion() {
-    if (listaAventureros.isEmpty()) {
-        return "Error: No hay aventureros registrados en el gremio para simular combate.";
-    }
 
-    StringBuilder sb = new StringBuilder();
-    sb.append("=== INICIO DE SIMULACIÓN DE COMBATE D&D 5e ===\n");
-    
-    
-    for (Aventurero a : listaAventureros) {
-     
-        sb.append(" - ").append(a.getNombre())
-          .append(" (Clase: ").append(a.getClass().getSimpleName())
-          .append(", Nivel: ").append(a.getNivelTotal()).append(") entra en combate y roza la victoria.\n");
-    }
-    
-    sb.append("¡Combate finalizado con éxito para el gremio!\n");
-    
-    String resultadoSimulacion = sb.toString();
-    
-    guardarEnArchivo("SIMULACIÓN DE COMBATE: " + listaAventureros.size() + " aventureros participantes.");
-    
-    return resultadoSimulacion;
-}
     public String procesarRegistro(String nombre, String pvStr, String claseSeleccionada, String extra, String nivelClaseStr) {
     try {
         if (nombre == null || nombre.trim().isEmpty()) {

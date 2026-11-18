@@ -2,3 +2,5 @@ REGISTRO: Sebas - Clase: Monje (Nivel: 13)
 COMBATE: El Monje Sebas (Nivel Monje: 13) gasta 13 pts de Ki (Ráfaga de Golpes con 1d8). -> El ataque falla. (Tirada del d20: 10)
 REGISTRO: Sebas - Clase: Guerrero (Nivel: 3)
 REGISTRO: Carlos - Clase: Mago (Nivel: 18)
+REGISTRO: Sebas123 - Clase: Mago (Nivel: 13)
+COMBATE: El Mago Sebas123 (Nivel Mago: 13) gasta un espacio de conjuro para lanzar Bola de Fuego [Conjuros de hasta Círculo 7]. -> ¡CRÍTICO NATURAL! (20) ¡Golpe devastador con doble de efectividad!
