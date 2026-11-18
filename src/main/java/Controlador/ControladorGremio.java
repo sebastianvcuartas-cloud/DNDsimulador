@@ -54,10 +54,18 @@ public class ControladorGremio {
 
    
     if (!personaExiste) {
-        long personasDistintas = listaAventureros.stream()
-                .map(a -> a.getNombre().trim().toLowerCase())
-                .distinct()
-                .count();
+        List<String> nombresUnicos = new ArrayList<>();
+
+for (Aventurero a : listaAventureros) {
+    String nombreProcesado = a.getNombre().trim().toLowerCase();
+    
+    
+    if (!nombresUnicos.contains(nombreProcesado)) {
+        nombresUnicos.add(nombreProcesado);
+    }
+}
+
+long personasDistintas = nombresUnicos.size();
         
         if (personasDistintas >= 4) {
             return false; 
@@ -103,10 +111,18 @@ public void guardarEnArchivo(String texto) {
 
  }
     public int getCantidadPersonasUnicas() {
-    return (int) listaAventureros.stream()
-            .map(a -> a.getNombre().trim().toLowerCase())
-            .distinct()
-            .count();
+    List<String> nombresUnicos = new ArrayList<>();
+    
+    for (Aventurero a : listaAventureros) {
+        String nombreProcesado = a.getNombre().trim().toLowerCase();
+        
+      
+        if (!nombresUnicos.contains(nombreProcesado)) {
+            nombresUnicos.add(nombreProcesado);
+        }
+    }
+    
+    return nombresUnicos.size();
 }
 
     public String procesarRegistro(String nombre, String pvStr, String claseSeleccionada, String extra, String nivelClaseStr) {
