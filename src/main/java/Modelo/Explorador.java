@@ -17,7 +17,7 @@ public class Explorador extends Aventurero {
         this.agregarClase("Explorador", nivel);
     }
 
-    // Regla oficial D&D 5e: Explorador Natural y bonificadores por hito de nivel
+   
     public String calcularVentajaTerreno() {
         int nivelE = obtenerNivelDeClase("Explorador");
         if (nivelE >= 10) return "Maestría de rastreo en " + terrenoFavorecido;
