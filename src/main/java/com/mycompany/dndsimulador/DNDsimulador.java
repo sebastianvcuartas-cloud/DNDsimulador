@@ -4,13 +4,17 @@
 
 package com.mycompany.dndsimulador;
 
+import Vista.*;
+
+
 /**
  *
  * @author USUARIO
  */
 public class DNDsimulador {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+   public static void main(String[] args) {
+        VistaDND vista = new VistaDND();
+        vista.setVisible(true);
     }
 }
