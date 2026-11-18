@@ -54,10 +54,18 @@ public class ControladorGremio {
 
    
     if (!personaExiste) {
-        long personasDistintas = listaAventureros.stream()
-                .map(a -> a.getNombre().trim().toLowerCase())
-                .distinct()
-                .count();
+        List<String> nombresUnicos = new ArrayList<>();
+
+for (Aventurero a : listaAventureros) {
+    String nombreProcesado = a.getNombre().trim().toLowerCase();
+    
+    
+    if (!nombresUnicos.contains(nombreProcesado)) {
+        nombresUnicos.add(nombreProcesado);
+    }
+}
+
+long personasDistintas = nombresUnicos.size();
         
         if (personasDistintas >= 4) {
             return false; 
@@ -103,35 +111,20 @@ public void guardarEnArchivo(String texto) {
 
  }
     public int getCantidadPersonasUnicas() {
-    return (int) listaAventureros.stream()
-            .map(a -> a.getNombre().trim().toLowerCase())
-            .distinct()
-            .count();
-}
-    public String procesarSimulacion() {
-    if (listaAventureros.isEmpty()) {
-        return "Error: No hay aventureros registrados en el gremio para simular combate.";
-    }
-
-    StringBuilder sb = new StringBuilder();
-    sb.append("=== INICIO DE SIMULACIÓN DE COMBATE D&D 5e ===\n");
-    
+    List<String> nombresUnicos = new ArrayList<>();
     
     for (Aventurero a : listaAventureros) {
-     
-        sb.append(" - ").append(a.getNombre())
-          .append(" (Clase: ").append(a.getClass().getSimpleName())
-          .append(", Nivel: ").append(a.getNivelTotal()).append(") entra en combate y roza la victoria.\n");
+        String nombreProcesado = a.getNombre().trim().toLowerCase();
+        
+      
+        if (!nombresUnicos.contains(nombreProcesado)) {
+            nombresUnicos.add(nombreProcesado);
+        }
     }
     
-    sb.append("¡Combate finalizado con éxito para el gremio!\n");
-    
-    String resultadoSimulacion = sb.toString();
-    
-    guardarEnArchivo("SIMULACIÓN DE COMBATE: " + listaAventureros.size() + " aventureros participantes.");
-    
-    return resultadoSimulacion;
+    return nombresUnicos.size();
 }
+
     public String procesarRegistro(String nombre, String pvStr, String claseSeleccionada, String extra, String nivelClaseStr) {
     try {
         if (nombre == null || nombre.trim().isEmpty()) {
@@ -144,44 +137,38 @@ public void guardarEnArchivo(String texto) {
         Aventurero nuevoAventurero = null;
 
        
-        switch (claseSeleccionada) {
-            case "Guerrero":
-                boolean armaduraPesada = extra.equalsIgnoreCase("si") || extra.equalsIgnoreCase("true");
-                nuevoAventurero = new Guerrero(nombre, pv, armaduraPesada, nivelClase);
-                break;
-            case "Mago":
-                int libros = Integer.parseInt(extra);
-                nuevoAventurero = new Mago(nombre, pv, libros, nivelClase);
-                break;
-            case "Clérigo":
-                nuevoAventurero = new Clerigo(nombre, pv, extra, nivelClase);
-                break;
-            case "Monje":
-                int ki = Integer.parseInt(extra);
-                nuevoAventurero = new Monje(nombre, pv, ki, nivelClase);
-                break;
-            case "Paladín":
-                int fuerza = Integer.parseInt(extra);
-                nuevoAventurero = new Paladin(nombre, pv, fuerza, nivelClase);
-                break;
-            case "Explorador":
-                nuevoAventurero = new Explorador(nombre, pv, extra, nivelClase);
-                break;
-            case "Pícaro":
-                boolean ladron = extra.equalsIgnoreCase("si") || extra.equalsIgnoreCase("true");
-                nuevoAventurero = new Picaro(nombre, pv, ladron, nivelClase);
-                break;
-            case "Bardo":
-                nuevoAventurero = new Bardo(nombre, pv, extra, nivelClase);
-                break;
-            default:
-                return "Error: Clase no válida.";
-        }
-
-        if (nuevoAventurero == null) {
-            return "Error: No se pudo crear el aventurero.";
-        }
-
+        if (claseSeleccionada.equalsIgnoreCase("Guerrero")) {
+    boolean armaduraPesada = extra.equalsIgnoreCase("si") || extra.equalsIgnoreCase("true");
+    nuevoAventurero = new Guerrero(nombre, pv, armaduraPesada, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Mago")) {
+    int libros = Integer.parseInt(extra);
+    nuevoAventurero = new Mago(nombre, pv, libros, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Clérigo")) {
+    nuevoAventurero = new Clerigo(nombre, pv, extra, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Monje")) {
+    int ki = Integer.parseInt(extra);
+    nuevoAventurero = new Monje(nombre, pv, ki, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Paladín")) {
+    int fuerza = Integer.parseInt(extra);
+    nuevoAventurero = new Paladin(nombre, pv, fuerza, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Explorador")) {
+    nuevoAventurero = new Explorador(nombre, pv, extra, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Pícaro")) {
+    boolean ladron = extra.equalsIgnoreCase("si") || extra.equalsIgnoreCase("true");
+    nuevoAventurero = new Picaro(nombre, pv, ladron, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Bardo")) {
+    nuevoAventurero = new Bardo(nombre, pv, extra, nivelClase);
+    
+    } else {
+    return "Error: Clase no válida.";
+}
        
         String nombreNuevo = nuevoAventurero.getNombre().trim();
         boolean personaExiste = false;
