@@ -137,44 +137,38 @@ public void guardarEnArchivo(String texto) {
         Aventurero nuevoAventurero = null;
 
        
-        switch (claseSeleccionada) {
-            case "Guerrero":
-                boolean armaduraPesada = extra.equalsIgnoreCase("si") || extra.equalsIgnoreCase("true");
-                nuevoAventurero = new Guerrero(nombre, pv, armaduraPesada, nivelClase);
-                break;
-            case "Mago":
-                int libros = Integer.parseInt(extra);
-                nuevoAventurero = new Mago(nombre, pv, libros, nivelClase);
-                break;
-            case "Clérigo":
-                nuevoAventurero = new Clerigo(nombre, pv, extra, nivelClase);
-                break;
-            case "Monje":
-                int ki = Integer.parseInt(extra);
-                nuevoAventurero = new Monje(nombre, pv, ki, nivelClase);
-                break;
-            case "Paladín":
-                int fuerza = Integer.parseInt(extra);
-                nuevoAventurero = new Paladin(nombre, pv, fuerza, nivelClase);
-                break;
-            case "Explorador":
-                nuevoAventurero = new Explorador(nombre, pv, extra, nivelClase);
-                break;
-            case "Pícaro":
-                boolean ladron = extra.equalsIgnoreCase("si") || extra.equalsIgnoreCase("true");
-                nuevoAventurero = new Picaro(nombre, pv, ladron, nivelClase);
-                break;
-            case "Bardo":
-                nuevoAventurero = new Bardo(nombre, pv, extra, nivelClase);
-                break;
-            default:
-                return "Error: Clase no válida.";
-        }
-
-        if (nuevoAventurero == null) {
-            return "Error: No se pudo crear el aventurero.";
-        }
-
+        if (claseSeleccionada.equalsIgnoreCase("Guerrero")) {
+    boolean armaduraPesada = extra.equalsIgnoreCase("si") || extra.equalsIgnoreCase("true");
+    nuevoAventurero = new Guerrero(nombre, pv, armaduraPesada, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Mago")) {
+    int libros = Integer.parseInt(extra);
+    nuevoAventurero = new Mago(nombre, pv, libros, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Clérigo")) {
+    nuevoAventurero = new Clerigo(nombre, pv, extra, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Monje")) {
+    int ki = Integer.parseInt(extra);
+    nuevoAventurero = new Monje(nombre, pv, ki, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Paladín")) {
+    int fuerza = Integer.parseInt(extra);
+    nuevoAventurero = new Paladin(nombre, pv, fuerza, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Explorador")) {
+    nuevoAventurero = new Explorador(nombre, pv, extra, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Pícaro")) {
+    boolean ladron = extra.equalsIgnoreCase("si") || extra.equalsIgnoreCase("true");
+    nuevoAventurero = new Picaro(nombre, pv, ladron, nivelClase);
+    
+    } else if (claseSeleccionada.equalsIgnoreCase("Bardo")) {
+    nuevoAventurero = new Bardo(nombre, pv, extra, nivelClase);
+    
+    } else {
+    return "Error: Clase no válida.";
+}
        
         String nombreNuevo = nuevoAventurero.getNombre().trim();
         boolean personaExiste = false;
