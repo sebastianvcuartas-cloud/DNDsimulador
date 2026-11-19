@@ -39,7 +39,7 @@ public class Guerrero extends Aventurero {
         String efectividad = TirarEfectividadDND();
         String proteccion = armaduraPesada ? "con Armadura Pesada" : "con Armadura Ligera";
         return "El Guerrero " + nombre + " (" + proteccion + ", Nivel Guerrero: " + obtenerNivelDeClase("Guerrero") + 
-               ") usa Oleada de Acción para ejecutar " + ataques + " ataques físicos (Regla PHB p.72). -> "+ efectividad;
+               ") usa Oleada de Acción para ejecutar " + ataques + " ataques físicos. -> "+ efectividad;
     }
 }
     

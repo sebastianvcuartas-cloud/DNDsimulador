@@ -84,18 +84,16 @@ long personasDistintas = nombresUnicos.size();
         return "No hay aventureros registrados en el gremio para simular combate.\n";
     }
 
-    StringBuilder sb = new StringBuilder();
-    sb.append("\n--- INICIO DE SIMULACIÓN DE COMBATE (d20) ---\n");
-    
-    for (Aventurero av : listaAventureros) {
-        String resultadoCombate = av.simularCombate();
-        sb.append(resultadoCombate).append("\n");
-        guardarEnArchivo("COMBATE: " + resultadoCombate);
-    }
-    
-    sb.append("--------------------------------------------------\n");
-    return sb.toString();
+    String reporte = "\n--- INICIO DE SIMULACIÓN DE COMBATE (d20) ---\n";
 
+    for (Aventurero av : listaAventureros) {
+    String resultadoCombate = av.simularCombate();
+    reporte += resultadoCombate + "\n";
+    guardarEnArchivo("COMBATE: " + resultadoCombate);
+}
+
+    reporte += "----------------------------------------\n";
+    return reporte;
     }
 
     public List<Aventurero> getListaAventureros() {
